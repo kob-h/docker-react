@@ -12,4 +12,4 @@ before_install:
 #Travis will watch the output of each command, and if in any command Travis will get an exit code
 #other than 0 - our build will fail.
 script:
-  - docker run kob-h/docker-react npm run test -- --coverage
+  - docker run -e CI=true kob-h/docker-react npm run test
