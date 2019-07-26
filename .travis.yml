@@ -1,0 +1,15 @@
+#we tell travis we need super user level permissions.
+sudo: required
+# we tell Travis we need the Docker CLI preinstalled. it'll get a copy of docker
+services:
+  - docker
+
+#set of commands to be executed before our test are run.
+before_install:
+  - docker build -t kob-h/docker-react -f dockerfile.dev . #use current directory
+
+#will contain commands that has to be executed to actually run our test suite.
+#Travis will watch the output of each command, and if in any command Travis will get an exit code
+#other than 0 - our build will fail.
+script:
+  - docker run kob-h/docker-react npm run test -- --coverage
