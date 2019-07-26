@@ -6,7 +6,7 @@ services:
 
 #set of commands to be executed before our test are run.
 before_install:
-  - docker build -t kob-h/docker-react -f dockerfile.dev . #use current directory
+  - docker build -t kob-h/docker-react -f Dockerfile.dev . #use current directory
 
 #will contain commands that has to be executed to actually run our test suite.
 #Travis will watch the output of each command, and if in any command Travis will get an exit code
