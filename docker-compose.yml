@@ -1,0 +1,22 @@
+version: '3'
+services: 
+  web:
+    build: # dot would not work a it'd look for a file called Dockerfile
+      context: . #look at the current working directory
+      dockerfile: Dockerfile.dev #find the file with this name to build the image
+    ports:
+      - "7777:3000"
+    volumes: 
+      - /app/node_modules
+      - .:/app
+  tests:
+    build: 
+      context: . 
+      dockerfile: Dockerfile.dev 
+    volumes: 
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
+      
+
+      
