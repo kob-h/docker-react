@@ -13,3 +13,17 @@ before_install:
 #other than 0 - our build will fail.
 script:
   - docker run -e CI=true kob-h/docker-react npm run test
+
+  #according to the data we have on AWS.
+deploy:
+    provider: elasticbeanstalk
+    region: "us-west-2"
+    app: "docker-react"
+    env: "docker-react-env"
+    bucket_name: "elasticbeanstalk-us-west-2-306476627547"
+    bucket_path: "docker-react"
+    on:
+      branch: master
+    access_key_id: $AWS_ACCESS_KEY #keys provided by amazon that will be typed in Travis CI env variables.
+    secret_access_key:
+      secure: "$AWS_SECRET_KEY"
